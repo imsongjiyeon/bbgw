@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBang</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/reset.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+        $("#userimail, #userpw").click(function() {
+    toggleClass(".active-color");
+});
+    </script>
+</head>
+<body>
+    <header>
+        <h1 class="logo">
+            <a href="http://imsjy.dothome.co.kr/bbgw/mindex.html" title="빵가워">BBang logo</a>
+        </h1>        
+    </header>
+    <main>
+        <form action="#">
+            <p class="field">
+                <label for="userid" class="hidden">user email</label>
+                        <i class="fa-solid fa-bread-slice"></i>
+                        <input type="text" id="userid" placeholder="아이디를 입력하세요." name="id">
+            </p>
+            <p class="field">
+                <label for="userpw" class="hidden">user password</label>
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="userpw" placeholder="비밀번호를 입력하세요.">
+            </p>
+            <div class="cb">
+                <input type="checkbox" id="idcb">
+                <label for="idcb">아이디 저장</label>
+                <input type="checkbox" id="autoid">
+                <label for="autoid">자동 로그인</label>
+            </div>
+            <button>로그인</button>
+            <button>회원가입</button>
+        </form>
+        <p class="text-center">
+            <a href="" class="link">아이디/비밀번호 찾기</a>
+        </p>
+        <div class="sns">
+            <strong>SNS 로그인</strong>
+            <ul class="sns_icon">
+                <li class="kakao">
+                    <a href="kakaowww.kakaocorp.com">
+                        <img src="./mimages/mkakao.png" alt="kakao">
+                    </a>
+                </li>
+                <li class="naver">
+                    <a href="kakaowww.kakaocorp.com">
+                        <img src="./mimages/mnaver.png" alt="naver">
+                    </a>
+                </li>
+                <li class="google">
+                    <a href="kakaowww.kakaocorp.com">
+                        <img src="./mimages/mgoogle.png" alt="google">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <p>
+            <img src="./images/random01.png" alt="" id="ranbanner">
+        </p>
+        <p>BBangGaWa&copy;All Rights Reserved.</p>
+    </footer>
+    <script>
+        img_num = Math.floor(Math.random()*3+1);
+        document.getElementById('ranbanner').src="./images/random0"+img_num+".png";
+
+    </script>
+</body>
+</html>

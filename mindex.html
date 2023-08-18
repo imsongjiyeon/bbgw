@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>빵가워 모바일</title>
+  <!-- 1. 초기화 -->
+  <link href="./css/mreset.css" type="text/css" rel="stylesheet">
+  <!-- 2. 공통서식(pc, mobile) -->
+  <link href="./css/mbase.css" type="text/css" rel="stylesheet">
+  <!-- 3. 공통 레이아웃 (layout) -->
+  <link href="./css/mlayout.css" type="text/css" rel="stylesheet">
+  <!-- 4. 메인콘텐츠 서식 -->
+  <link href="./css/mmain.css" type="text/css" rel="stylesheet">
+  <!-- 5. 스와이퍼 플러그인 css
+  <link href="./css/swiper.css" type="text/css" rel="stylesheet"> -->
+  <!-- 6. 폰트어썸 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- 7. 접두사 자동으로 붙여주는 스크립트 -->
+  <script src="./script/prefixfree.min.js"></script>
+  <!-- 8. 제이쿼리 라이브러리 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      const gnb = $('.gnb > li > a');
+
+      gnb.click(function(){//메인메뉴 클릭시
+        $(this).next().slideToggle();//a와 뒤에 ul은 형제관계 next() 메서드 사용
+        $(this).find('i').toggleClass('on'); //선택한 a태그의 자손 i를 on 클래스 서식을 적용했다가 빠짐
+
+        return false; //a태그의 #기능을 무력화하여 새로고침 못하게 막는다.
+      });
+
+      //메인슬라이드
+      const l_btn = $('.slide i.fa-angle-left');
+      const r_btn = $('.slide i.fa-angle-right');
+      const play_btn = $('.fa-play');
+      const stop_btn = $('.fa-stop');
+      
+
+      //3번 슬라이드를 1번의 앞으로 자리 배치한다.
+      // B.insertBefore(A) : a요소의 앞에 b를 배치
+      $('.slide_wrap > li:last-child').insertBefore('.slide_wrap > li:first-child');
+      // 1번이 중앙에 오도록 부모의 위치를 왼쪽으로 393 이동한다.
+      $('.slide_wrap').css('margin-left','-393px');
+      
+      //왼쪽으로 움직이는 함수
+      function moveLeft(){
+        $('.slide_wrap').animate({'margin-left':'-786px'},300, function(){
+          $('.slide_wrap > li:first-child').insertAfter('.slide_wrap > li:last-child'); //맨 왼쪽 3번 이미지를 오른쪽 2번의 뒤로 자리를 옮겨준다.
+          $('.slide_wrap').css('margin-left','-393px');
+        });
+      }
+
+      //오른쪽으로 움직이는 함수
+      function moveRight(){
+        $('.slide_wrap').animate({'margin-left':'0px'},300,function(){
+          $('.slide_wrap > li:last-child').insertBefore('.slide_wrap > li:first-child');
+          $('.slide_wrap').css('margin-left','-393px');
+        });
+      }
+      
+      //시간객체를 사용하여 매3초마다 함수를 호출한다.
+      let Timer = setInterval(moveLeft, 3000);
+
+      //좌, 우버튼 클릭시 각각 해당 함수를 호출하여 슬라이드가 움직이도록 한다.
+      l_btn.click(function(){
+        moveLeft();
+        //시간을 제거하여 움직이는 콘텐츠가 중복되지 않게
+        clearInterval(Timer);
+      });
+      r_btn.click(function(){
+        moveRight();
+        //시간을 제거하여 움직이는 콘텐츠가 중복되지 않게
+        clearInterval(Timer);
+      });
+      //마우스를 아웃시 다시 시간객체를 생성하여 자동으로 움직이게 한다.
+      $('.slide i.fas').mouseleave(function(){
+        clearInterval(Timer);
+        Timer = setInterval(moveLeft, 3000);
+      });
+
+      //play버튼
+      play_btn.click(function(){
+        Timer = setInterval(moveLeft, 3000);
+      });
+      //stop버튼
+      stop_btn.click(function(){
+        clearInterval(Timer);
+      });
+
+
+      let p_num = $('.nslide_wrap >li').length; //부모안에 개수 찾아주는 속성
+      console.log(p_num); //테스트~ 
+      let n = 0; //초기값
+
+      $('.nslide_wrap> li:last-child').insertBefore('.nslide_wrap> li:first-child');
+      $('.nslide_wrap').css('margin-left','-393px');
+
+      function moveLeft2(){
+        if(n < p_num - 1){
+          n++;
+        }else {
+          n=0;
+        }
+        $('.nslide_wrap').stop().animate({'margin-left':'-786px'},700,function(){
+          $('.nslide_wrap> li:first-child').insertAfter('.nslide_wrap> li:last-child'); 
+          $('.nslide_wrap').css('margin-left','-393px');
+          $('.progressbar').css('width', '0px');
+          
+        });
+        
+        $('.progressbar').animate({'width':'150px'},500);
+        $('.page').html((n + 1) + '/' + p_num);
+      }
+        
+      Timer = setInterval(moveLeft2, 3000);
+
+
+      //배너(새로고침시 변경)
+      let img_num = Math.floor(Math.random()*3+1);
+      console.log(img_num);
+      $('#banner').attr('src','./mimages/banner0' + img_num +'.png')
+
+
+      //top버튼 클릭시 새로고침 방지
+      $('#top_btn').click(function(){
+        //html, body 태그가 있는 곳까지 스크롤 0이 되는 지점으로 애니메이션 효과를 주면서 올라가라.~ 0.3초만에
+        $('html, body').animate({scrollTop:'0px'}, 300);
+        return false; //새로고침 방지
+      });
+
+    });
+  </script>
+
+</head>
+<body>
+  <input type="checkbox" id="toggle">
+  <!-- 헤더영역 시작 -->
+  <header>
+    
+    <label class="fas fa-bars" for="toggle"></label>
+
+    <h1>
+      <a href="mindex.html" title="메인페이지로 바로가기">
+        <img src="./mimages/logo.png" alt="상단로고">
+      </a>
+    </h1>
+
+    <a href="breadlocation.html" title="내위치주변맛집탐색"><i class="fa-solid fa-location-dot"></i></a>
+    
+    <nav class="navi">
+      <h2>
+        <a href="mindex.html" title="메인페이지로 바로가기">
+          <img src="./mimages/navi_logo.png" alt="내비게이션로고">
+        </a>
+      </h2>
+      
+      <div class="lnb">
+        <a href="mypage.html" title="마이페이지">마이페이지</a>
+        <a href="mlogin.html" title="로그인">로그인</a>
+      </div>
+
+      <label class="fas fa-times" for="toggle"></label>
+      
+      <div class="gnb_wrap">
+        <ul class="gnb">
+          <li><a href="intro.html" title="소개">소개<i class="fas fa-angle-down"></i></a>
+            <ul class="sub">
+              <li><a href="intro.html" title="소개">소개</a></li>
+              <li><a href="purpose.html" title="목적">목적</a></li>
+            </ul>
+          </li>
+          <li><a href="magazine.html" title="매거진">매거진<i class="fas fa-angle-down"></i></a>
+            <ul class="sub">
+              <li><a href="editor.html" title="에디터추천">에디터 추천</a></li>
+              <li><a href="user.html" title="사용자추천">사용자 추천</a></li>
+            </ul>
+          </li>
+          <li><a href="breadlocation.html" title="맛집탐색">맛집탐색<i class="fas fa-angle-down"></i></a>
+            <ul class="sub">
+              <li><a href="breadlocation.html" title="지역">지역</a></li>
+              <li><a href="theme.html" title="테마">테마</a></li>
+              <li><a href="excellent.html" title="우수지점">우수지점</a></li>
+            </ul>
+          </li>
+          <li><a href="event.html" title="이벤트">이벤트<i class="fas fa-angle-down"></i></a>
+            <ul class="sub">
+              <li><a href="event.html" title="진행중인 이벤트">진행중인 이벤트</a></li>
+              <li><a href="winner.html" title="당첨자발표">당첨자발표</a></li>
+            </ul>
+          </li>
+          <li><a href="notice.html" title="고객센터">고객센터<i class="fas fa-angle-down"></i></a>
+            <ul class="sub">
+              <li><a href="notice.html" title="공지사항">공지사항</a></li>
+              <li><a href="qna.html" title="1:1문의">1:1 문의</a></li>
+              <li><a href="faq.html" title="FAQ">FAQ</a></li>
+              <li><a href="applyeditor.html" title="에디터신청">에디터신청</a></li>
+            </ul>
+          </li>
+          <li><a href="favorite.html" title="마이페이지">마이페이지<i class="fas fa-angle-down"></i></a>
+            <ul class="sub">
+              <li><a href="favorite.html" title="빵찜">빵찜</a></li>
+              <li><a href="myreview.html" title="내가쓴리뷰">내가 쓴 리뷰</a></li>
+              <li><a href="mypage.html" title="내정보수정">내정보수정</a></li>
+              <li><a href="applyeditor.html" title="로그아웃">로그아웃</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+ 
+
+      <a href="logout.html" title="로그아웃" class="logout">로그아웃</a>
+ 
+
+      <ul class="lang">
+        <li><a href="kr.html" title="KR">KR</a></li>
+        <li><a href="eng.html" title="ENG">ENG</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <!-- 메인영역 시작 -->
+  <main>
+
+    <!-- 검색폼 -->
+    <fieldset>
+      <legend>검색폼</legend>
+      <input type="search" id="search" placeholder="검색어를 입력하세요." maxlength="50">
+      <label for="search" class="fas fa-search">
+        <span>검색버튼</span>
+      </label>
+    </fieldset>
+
+    <article class="mainslide">
+      <div class="slide"> <!-- 독립적인 내용은 article-->
+        <h2>메인슬라이드</h2> <!-- article 태그에는 무조건 제목태그 필수!-->
+        <ul class="slide_wrap">
+  
+          <li><a href="#" title="청수당바로가기">
+            <img src="./mimages/mslide01.png" alt="청수당">
+            <div class="tag_box">
+              <i class="fa-solid fa-hashtag">비주얼맛집</i>
+              <i class="fa-solid fa-hashtag">청수당</i>
+            </div>
+            <p class="bgcolor01">
+              오래된 일본 가옥을 개조하여 고풍스러운<br>
+              분위기의 디저트 카페
+            </p>
+          </a></li>
+  
+          <li><a href="#" title="런던베이글뮤지엄바로가기">
+            <img src="./mimages/mslide02.png" alt="런던베이글뮤지엄">
+            <div class="tag_box">
+              <i class="fa-solid fa-hashtag">베이글맛집</i>
+              <i class="fa-solid fa-hashtag">런던베이글뮤지엄</i>
+            </div>
+            <p class="bgcolor02">
+              영국 로컬 카페 분위기의 베이글 전문점<br>
+              다양한 베이글과 베이글 샌드위치류를 판매
+            </p>
+          </a></li>
+  
+          <li><a href="#" title="포지티브스페이스566바로가기">
+            <img src="./mimages/mslide03.png" alt="포지티브스페이스566">
+            <div class="tag_box">
+              <i class="fa-solid fa-hashtag">대형카페</i>
+              <i class="fa-solid fa-hashtag">포지티브스페이스566</i>
+            </div>
+            <p class="bgcolor03">
+              세계에서 제일 큰 카페(기네스 등재)<br>
+              상당한 규모의 대형 베이커리 겸 카페
+            </p>
+          </a></li>
+  
+        </ul>
+  
+        <i class="fas fa-angle-left"></i>
+        <i class="fas fa-angle-right"></i>
+  
+      </div>
+      <p>
+        <i class="fa-solid fa-play"></i>
+        <i class="fa-solid fa-stop"></i>
+      </p>
+    </article>
+
+    <!-- #New -->
+    <article class="new">
+      <h2><i class="fa-solid fa-hashtag"></i>New</h2>
+      <div class="nslide">
+        <ul class="nslide_wrap">
+          <li><a href="#" title="아베베베이커리">
+            <img src="./mimages/new01.png" alt="아베베베이커리">
+            <p>아베베베이커리</p>
+          </a></li>
+          <li><a href="#" title="베즐리">
+            <img src="./mimages/new02.png" alt="베즐리">
+            <p>베즐리</p>
+          </a></li>
+          <li><a href="#" title="치키차카초코">
+            <img src="./mimages/new03.png" alt="치키차카초코">
+            <p>치키차카초코</p>
+          </a></li>
+        </ul>
+      </div>
+
+      <div class="status">
+        <div class="progressbar_wrapper">
+          <div class="progressbar"></div>
+        </div>
+        <span class="page">1/3</span>
+      </div>
+      
+      <a href="#" title="더보기" class="c_detail_btn">더보기
+        <img src="./mimages/more.png" alt="더보기">
+      </a>
+
+    </article>
+
+
+    <!-- #Today's Magazine -->
+    <article class="magagine">
+      <h2><i class="fa-solid fa-hashtag"></i>Today's Magazine</h2>
+
+      <a href="#" title="오늘의매거진" class="m_main">
+        <img src="./mimages/magazine01.png" alt="오늘의매거진">
+        <div class="shadow"></div>
+        <ul>
+          <li class="category">비건 베이커리</li>
+          <li class="date">2023.07.10</li>
+        </ul>
+        <p>비건라이프를 위한 신상<br>베이커리카페</p>
+      </a>
+
+      <ul class="m_list">
+        <li>
+          <img src="./mimages/magazine02.png" alt="">
+          <div class="m_item">
+            <p>카페</p>
+            <p>푸르른 바다전망이 펼쳐지는<br>휴양지카페</p>
+            <p>2023.07.01 | by 빵가워</p>
+          </div>
+        </li>
+        <li>
+          <img src="./mimages/magazine03.png" alt="">
+          <div class="m_item">
+            <p>샌드위치</p>
+            <p>미식가의 입맛을 저격할 프리<br>미엄 샌드위치 전문점</p>
+            <p>2023.06.29 | by 빵가워</p>
+          </div>
+        </li>
+        <li>
+          <img src="./mimages/magazine04.png" alt="">
+          <div class="m_item">
+            <p>베이커리 & 커피</p>
+            <p>2023년 주목할 만한 맛집<br>: 커피전문점 & 베이커리 편</p>
+            <p>2023.06.27 | by 빵가워</p>
+          </div>
+        </li>
+      </ul>
+
+      <a href="#" title="더보기" class="r_detail_btn">더보기
+        <img src="./mimages/more.png" alt="더보기">
+      </a>
+
+    </article>
+
+    <!-- #Local Bakery-->
+    <article class="localbakery">
+      <h2><i class="fa-solid fa-hashtag"></i>Local Bakery</h2>
+      
+      <ul class="lb_inner">
+        <li>
+          <a href="#" title="밀곳간">
+            <img src="./mimages/local01.png" alt="밀곳간">
+            <div class="local_detail">
+              <p>밀곳간<i class="fa-solid fa-star"></i><span>4.7</span></p>
+              <p>서울 성북구 성북로18길 19</p>
+              <p>#시오빵 #베이커리맛집 #명란버터시오빵 #까눌레 #쁘띠소세지롤</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#" title="피터팬1978">
+            <img src="./mimages/local02.png" alt="피터팬1978">
+            <div class="local_detail">
+              <p>피터팬1978<i class="fa-solid fa-star"></i><span>4.4</span></p>
+              <p>서울 서대문구 증가로 10</p>
+              <p>#아기궁댕이 #백년가게 #시오빵
+                #치아바타 #까눌레 #우유식빵</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#" title="뺑빼르망떼">
+            <img src="./mimages/local03.png" alt="뺑빼르망떼">
+            <div class="local_detail">
+              <p>뺑빼르망떼<i class="fa-solid fa-star"></i><span>4.7</span></p>
+              <p>서울 동작구 만양로8길 68 1층</p>
+              <p>#사워도우바게트 #고구마크림치즈 #우유식빵 #통밀사워도우</p>
+            </div>
+          </a>
+          
+        </li>
+      </ul>
+
+      <a href="#" title="더보기" class="l_detail_btn">더보기
+        <img src="./mimages/more.png" alt="더보기">
+      </a>
+
+    </article>
+
+    <!-- #Best Review -->
+    <article class="review">
+      <div class="r_inner">
+        <h2><i class="fa-solid fa-hashtag"></i>Best Review</h2>
+
+        <ul class="r_list">
+          <li><a href="#" title="베스트리뷰1등">
+            <img src="./mimages/review_w01.png" alt="1등" class="medal">
+            <img src="./mimages/review01.png" alt="베스트리뷰1등">
+            <div class="r_item">
+              <p>성심당은내고향이다영 <img src="./mimages/bread_plus.png" alt="좋아요수" class="plus"><small>+88</small></p>
+              <p>타르트=집의 기록상점
+                공식입니다. 그냥 기억하세요.
+                타르트의 세계로 안내해준 가게
+                타르트의 특징인 겉바속촉을 제대로 느끼면서,, 옥수수의 진한 향이 나오다니,, 둘이 가서 한 명 옆에서 쓰러져도 아랑곳하지 않을 맛,, 내부에는 아기자기한 소품들이 많아요! 근데 유일한 단점은 좁아서 먹고가기 힘들어요ㅠㅠ</p>
+            </div>
+          </a></li>
+          <li><a href="#" title="베스트리뷰2등">
+            <img src="./mimages/review_w02.png" alt="2등" class="medal">
+            <img src="./mimages/review02.png" alt="베스트리뷰2등">
+            <div class="r_item">
+              <p>대형카페는사랑이지연 <img src="./mimages/bread_plus.png" alt="좋아요수" class="plus"><small>+77</small></p>
+              <p>보는 재미와 먹는 재미 두마리 토끼를 잡을 수 있는 곳!
+                보이는 예쁨만큼 맛도 예쁘다니, 금상첨화란 말이 여기서 시작됐나요? 유명해지지말아라......없어지지 말아라...</p>
+            </div>
+          </a></li>
+          <li><a href="#" title="베스트리뷰3등">
+            <img src="./mimages/review_w03.png" alt="3등" class="medal">
+            <img src="./mimages/review03.png" alt="베스트리뷰3등">
+            <div class="r_item">
+              <p>빵을사랑혜연 <img src="./mimages/bread_plus.png" alt="좋아요수" class="plus"><small>+63</small></p>
+              <p>종로구에 왔는데 여길 안간다? 붕어빵에 단팥빠진 소리입니다. 줄이 길긴하지만 빠지는 속도가 비교적 빠른 편이라서, 진짜 꼭 먹어보세요. 찹살꽈배기도 맛있지만 찹쌀도너츠도 너무 맛있었어요..</p>
+            </div>
+          </a></li>
+        </ul>
+
+        <a href="#" title="더보기" class="c_detail_btn">더보기
+          <img src="./mimages/more.png" alt="더보기">
+        </a>
+      </div>
+
+    </article>
+
+    <!-- 배너(새로고침시 변경) -->
+    <article class="banner">
+      <h2>배너</h2>
+      <img src="./mimages/banner01.png" alt="배너" id="banner">
+    </article>
+  </main>
+
+  <footer>
+    <h2> <!-- 푸터는 h1이 아닌 h2로 작성 -->
+      <a href="mindex.html" title="메인페이지로 바로가기">
+        <img src="./mimages/footer_logo.png" alt="하단로고">
+      </a>
+    </h2>
+    <!-- <a href="index.html?move_pc_screen=1" title="PC버전보기" class="pc_btn">PC 버전보기</a> -->
+
+    <div class="f_inner">
+      <address>
+        <ul>
+          <li><a href="#" title="개인정보처리방침">개인정보처리방침</a></li>
+          <li><a href="#" title="이메일주소 무단 수집 거부">이메일주소 무단 수집 거부</a></li>
+          <li><a href="#" title="고객문의">고객문의</a></li>
+        </ul>
+  
+        <p>(주)빵지순례</p>
+        <p>주소: 서울특별시 종로구 관수동 수표로 96 2F 204호</p>
+        <p>공동대표: 임혜연, 송지연, 이다영</p>
+        <p>사업자 등록번호: 000-00-000000</p>
+        <p>© 2023 breadwelcome. All rights reserved.</p>
+      </address>
+  
+      <ul class="sns">
+        <li>
+          <a href="#" title="카카오톡">
+            <img src="./images/sns_kakao.png" alt="카카오톡">
+          </a>
+        </li>
+        <li>
+          <a href="#" title="네이버">
+            <img src="./images/sns_naver.png" alt="네이버">
+          </a>
+        </li>
+        <li>
+          <a href="#" title="구글">
+            <img src="./images/sns_google.png" alt="구글">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+  <a href="#" title="위로 바로가기" id="top_btn">Top</a>
+
+</body>
+</html>

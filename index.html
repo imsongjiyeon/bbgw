@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <title>빵가워</title>
+    <!-- 1. 초기화 -->
+    <link href="./css/reset.css" rel="stylesheet" type="text/css">
+    <!-- 2. 기본서식 -->
+    <link href="./css/base.css" rel="stylesheet" type="text/css">
+    <!-- 3. 공통서식 -->
+    <link href="./css/common.css" rel="stylesheet" type="text/css">
+    <!-- pc -->
+    <link href="./css/pc.css" rel="stylesheet" type="text/css">
+    <!-- 로그인 -->
+    <link rel="stylesheet" href="login.html" type="text/css">
+    <!-- 아이콘 폰트 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <!-- 슬라이드서식 -->
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/swiper-bundle.css">
+    <script src="script/swiper-bundle.js"></script>
+</head>
+<body>
+  <header>
+    <div class="top">
+      <h1>
+        <a href="./index.html" title="메인페이지"><img src="./images/logo.png" alt="상단로고"></a>
+      </h1>
+      <nav class="lnb">
+        <ul>
+          <li><a href="login.html" title="로그인">로그인</a></li>
+          <li><a href="mypage.html" title="마이페이지">마이페이지</a></li>
+          <li><select name="Language" id="lang">
+            <option value="">Language</option>
+            <option value="">Korean</option>
+            <option value="">English</option>
+          </select></li>
+        </ul>
+      </nav>
+    </div>
+    <!-- 2단 내비 -->
+    <div class="h_bottom">
+      <nav class="bg">
+        <ul class="gnb">
+          <li><a href="#" title="소개">소개</a>
+            <ul class="sub">
+              <li><a href="#" title="소개">소개</a></li>
+              <li><a href="#" title="목적">목적</a></li>
+            </ul>
+          </li>
+          <li><a href="#" title="매거진">매거진</a>
+            <ul class="sub">
+              <li><a href="#" title="에디터 추천">에디터 추천</a></li>
+              <li><a href="#" title="사용자 추천">사용자 추천</a></li>
+            </ul>
+          </li>
+          <li><a href="#" title="빵집탐색">빵집탐색</a>
+            <ul class="sub">
+              <li><a href="#" title="지역">지역</a></li>
+              <li><a href="#" title="테마">테마</a></li>
+              <li><a href="#" title="우수지점">우수지점</a></li>
+            </ul>
+          </li>
+          <li><a href="#" title="이벤트">이벤트</a>
+            <ul class="sub">
+              <li><a href="#" title="이벤트">진행중인 이벤트</a></li>
+              <li><a href="#" title="당첨자 발표">당첨자 발표</a></li>
+            </ul>
+          </li>
+          <li><a href="#" title="고객센터">고객센터</a>
+            <ul class="sub">
+              <li><a href="#" title="공지사항">공지사항</a></li>
+              <li><a href="#" title="1:1문의">1:1문의</a></li>
+              <li><a href="#" title="FAQ">FAQ</a></li>
+              <li><a href="#" title="에디터 신청">에디터 신청</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+  </div>
+  </header>
+
+  <script>
+    $(document).ready(function(){
+      //1. 변수선언
+      const nav = $('.gnb');
+
+      //2. h_bottom에 마우스오버시 높이 326px 커지게 하고
+      
+      nav.hover(function(){
+        $('.h_bottom').css('background','#FCFBF6');
+        $('.h_bottom').stop().animate({'height':'290px'},400); 
+        $('.sub').stop().fadeIn();
+      },function(){ 
+        $('.h_bottom').css('background','none');
+        $('.h_bottom').stop().animate({'height':'40px'},400);
+        $('.sub').stop().fadeOut(100);
+      });
+
+    });
+  </script>
+
+  <main>
+<!-- 키워드 검색 -->
+ <!-- 메인슬라이드, 검색영역시작 -->
+ <section id="con01">
+  <h4 class="no">ㅎ</h4>
+  <article id="search_box">
+  <h4 class="no">ㅎ</h4>
+
+    <div class="keyword">키워드 검색
+      <a href="#" title=""><i class="fa-solid fa-magnifying-glass"></i></a>
+    </div>
+    <div class="local">주변 맛집 검색
+        <a href="#" title=""><i class="fa-solid fa-location-dot"></i></a>
+    </div>
+  </article>
+  <article id="m_slide">
+  <h4 class="no">ㅎ</h4>
+    <div class="txt_box"><!--왼쪽 설명-->
+
+      <div class="txt_box_inner"><!--글자 숨기기 위해서 -->
+      <ul>
+        <li><span>빵이 아니면, 죽음을 달라.</span><br>
+              빵순이 빵돌이 다이어터들을 위한 <br>건강한 빵집 top5
+              <p class="p01"><a href="#" title="자세히보기">자세히보기</a></p>
+          </li>
+            
+        <li><span>입벌려, 크로와상 들어간다.</span><br>
+          마약급 중독성있는 크로와상 맛집top5
+          <p class="p01"><a href="#" title="자세히보기">자세히보기</a></p>
+        </li>
+        <li><span>빵빵! 터진다.</span> <br>
+            터지기 일보직전<br> 크림 가득 맛집 top5
+            <p class="p01"><a href="#" title="자세히보기">자세히보기</a></p>
+          </li>
+      </ul>
+      </div>
+    </div>
+    <div class="img_box">
+      <ul>
+        <li><img src="./images/banner1.jpg" alt="배너"></li>
+        <li><img src="./images/banner2.jpg" alt="배너"></li>
+        <li><img src="./images/banner3.jpg" alt="배너"></li>
+      </ul>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </article>
+</section>
+  <script>
+    $(document).ready(function(){
+
+      // 1.변수선언
+      const r_btn = $('#m_slide i.fas');
+      let n = 1;
+
+      // 2. 움직이는 함수, 자리배치
+      function moveLeft(){
+        $('.txt_box ul').animate({'margin-left':'-300px'},300,
+        function(){
+          $('.txt_box ul li:first-child').insertAfter('.txt_box ul li:last-child'); //자리배치가 끝나고 나면, 다시 원래 자리로 돌아가도록 해야함.
+          $('.txt_box ul').css('margin-left','0px');
+        });
+
+        $('.img_box ul').animate({'margin-left':'-600px'},300,
+        function(){
+          $('.img_box ul li:first-child').insertAfter('.img_box ul li:last-child');
+          $('.img_box ul').css('margin-left','0px');
+        });
+      }
+// 좌측방향버튼 클릭시 해당 함수 호출
+      $('#m_slide i.fas').click(function(){
+      moveLeft();
+      changeBgcolor();
+
+      });
+// 3. 배경색상 변경하기 함수
+      function changeBgcolor(){
+        if(n==3){
+        n=1;
+        $('#con01').removeClass('bgcolor02');
+        $('#con01').removeClass('bgcolor03');
+        $('#con01').addClass('bgcolor01');
+      }else if(n==2){
+        n=3;
+        $('#con01').removeClass('bgcolor01');
+        $('#con01').removeClass('bgcolor02');
+        $('#con01').addClass('bgcolor03');
+      }else {
+        n=2;
+        $('#con01').removeClass('bgcolor01');
+        $('#con01').removeClass('bgcolor03');
+        $('#con01').addClass('bgcolor02');
+      }
+      console.log(n);
+      }
+
+//4.시간객체를 사용하여 매 3초
+let Timer = setInterval(moveLeft, 3000);
+let Timer2 = setInterval(changeBgcolor, 3000);
+    });
+  </script>
+
+
+  <!-- sohot -->
+  <article class="sohot">
+    <h2>so&nbsp;hot<span>&nbsp; 요즘 떠오르고 있는 빵은?</span></h2>
+      <ul>
+        <li class="s1">
+          <img src="./images/sohot1.png" alt="">
+          <div class="caption">
+            <p>소금빵</p>
+            <p>버터 양이 차지하는 비중이 다른 빵에 비해 높다. 버터가 반죽 안에서 녹으면서 공기층이 형성돼 식감은 쫄깃해지고, 빵 겉에는 버터가 녹아 바삭해지게 됐다. 여기에 소금을 빵 위에 뿌려 자칫 느끼해질 수 있는 빵맛을 살린 특징을 가진다.</p>
+          </div>
+        </li>
+
+        <li class="s1">
+          <img src="./images/sohot2.png" alt="">
+          <div class="caption">
+            <p>크로플</p>
+            <p>크로와상과 와플의 합성어. <br>
+            크로와상 반죽을 굽는 게 아닌 와플 기계에 눌러 겉바속촉의 매력을 살린다. 취향에 따라 아이스크림 및 과일을 올려 먹기도 한다. </p>
+          </div>
+        </li>
+
+        <li class="s1">
+          <img src="./images/sohot3.png" alt="" >
+          <div class="caption">
+            <p>크림빵</p>
+            <p>옛날 도넛을 현대화한 요즘 떠오르고 있는 인기 메뉴이다.
+            도넛 속에 다양하게 필링을 가득 넣은 것이 특징이다. </p>
+          </div>
+    
+        </li>
+      </ul>
+  </article>
+
+
+  <!-- 매거진 -->
+  <article class="magazine">
+    <h2>매거진 <span>&nbsp;빵을 위한, 빵에 의한, 빵에 진심인 자들의 모음집 </span></h2>
+    <ul class="slide_wrap">
+      <li class="slide">
+        <ul>
+                <li class="maga1">
+                  <a href="#" title="">
+                    <img src="./images/m1.png" alt="">
+                    <div class="bg">
+                      <p>우울할 땐 초코당 앞으로</p>
+                      <p>초코도 녹고, 내마음도 녹는 달달한 초코빵 맛집</p>
+                    </div>
+                  </a>
+                </li>
+                <li class="maga1">
+                  <a href="#" title="">
+                    <img src="./images/m5.png" alt="">
+                    <div class="bg">
+                      <p>멀리가지 말아요, 코 앞에 있어요.</p>
+                      <p>진열되자마자 사라지는 편의점의 인기메뉴 빵들</p>
+                    </div>
+                  </a>
+                </li>
+                <li class="maga1">
+                  <a href="#" title="">
+                    <img src="./images/m6.png" alt="">
+                    <div class="bg">
+                      <p>여긴 뉴욕인가요?</p>
+                      <p>쫀득하다못해 쫘안-득한 베이글 맛집</p>
+                    </div>
+                  </a>
+                </li>
+          </ul>
+          </li>
+          <li class="slide">
+            <ul>
+            <li class="maga1">
+              <a href="#" title="">
+              <img src="./images/m7.png" alt="">
+              <div class="bg">
+                <p>구황작물을 싫어하세요? 그럼 빵으로는 어떠세요?</p>
+                <p>구황작물을 빵으로 실현한 이색 빵집</p>
+              </div>
+            </a>
+            </li>
+            <li class="maga1">
+              <a href="#" title=""><img src="./images/m8.png" alt="">
+              <div class="bg">
+                <p>니들이 옛날 맛을 알아?</p>
+                <p>터지기 일보직전, 그림빵 맛집</p>
+              </div>
+              </a>
+            </li>
+              <li class="maga1">
+                <a href="#" title=""><img src="./images/m2.png" alt="">
+                <div class="bg">
+                  <p>빵이 아니면, 죽음을 달라.</p>
+                  <p>빵순이 빵돌이 다이어터들을 위한 건강한 빵집</p>
+                </div>
+                </a>
+              </li>
+            </ul>
+            </li>
+            <li class="slide">
+              <ul>
+              <li class="maga1">
+                <a href="#" title="">
+                <img src="./images/m3.png" alt="">
+                  <div class="bg">
+                    <p>입 벌려 크로와상 들어간다.</p>
+                    <p>파삭파삭 중독성있는 크로와상 맛집</p>
+                  </div>
+                  </a>
+              </li>
+              <li class="maga1">
+                <a href="#" title="">
+                <img src="./images/m4.png" alt="">
+                <div class="bg">
+                  <p>빵빵! 터진다.</p>
+                  <p>터지기 일보직전, 크림빵 맛집</p>
+                </div>
+                </a>
+              </li>
+              <li class="maga1">
+                <a href="#" title="">
+                <img src="./images/m4.png" alt="">
+                <div class="bg">
+                  <p>빵빵! 터진다.</p>
+                  <p>터지기 일보직전, 크림빵 맛집</p>
+                </div>
+                </a>
+              </li>
+          </ul>
+        </li>
+      </ul>
+      <i class="fa-solid fa-angle-left io"></i>
+      <i class="fa-solid fa-angle-right io"></i>
+  </article>
+
+  <script>
+    $(document).ready(function(){
+            const l_btn = $('.magazine i.fa-angle-left');
+            const r_btn = $('.magazine i.fa-angle-right');
+        // 매거진
+
+        //왼쪽으로 움직이는 함수
+        function moveLeft(){
+            $('.slide_wrap').animate({'margin-left':'-2400px'}, 300, function(){
+            $('.slide:first-child').insertAfter('.slide_wrap > li:last-child'); //맨 왼쪽 3번 이미지를 오른쪽 2번의 뒤로 자리를 옮겨준다.
+            $('.slide_wrap').css('margin-left','-1200px');
+            });
+        };
+
+        //오른쪽으로 움직이는 함수
+        function moveRight(){
+            $('.slide_wrap').animate({'margin-left':'0px'}, 300, function(){
+                $('.slide:last-child').insertBefore('.slide_wrap > li:first-child');
+                $('.slide_wrap').css('margin-left','-1200px');
+            });
+            
+        }
+
+        //좌, 우버튼 클릭시 각각 해당 함수를 호출하여 슬라이드가 움직이도록 한다.
+        l_btn.click(function(){
+            moveLeft();
+        });
+
+        r_btn.click(function(){
+            moveRight();
+        });
+
+    });
+</script>
+
+  <!-- 키워드 추천 -->
+  <section class="key"><!--전체-->
+    <h2 class="k_h2">키워드 추천<span>&nbsp;누구와 어디든지 빵과 함께 할 수 있다? 있다!</span></h2>
+    <!--1 page-->
+    <div class="swiper-container keySlide">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="keybox1">
+            <div class="k_page1">
+              <img src="./images/key1.png" alt="">
+              <dl>
+                <dt>&#35;연인과 &#35;데이트 &#35;분위기</dt>
+                <dd class="k01">청수당 </dd>
+                <dd>서울 종로구</dd>
+                <dd>매일 11:30 &#126; 22:00</dd>
+                <dd>디저트는 일찍 마감되는 곳이므로 디저트까지 맛보고 싶다면 일찍 방문하길 추천한다. 수플레 맛집과 동시에 스톤드립커피가 유명하다.</dd>
+              </dl>
+            </div>
+            <div class="k_page1">
+              <img src="./images/key3.png" alt="">
+              <dl>
+                <dt>&#35;가족과 &#35;단체 &#35;분위기 &#35;고즈넉 &#35;어른들이 좋아할</dt>
+                <dd class="k01">자미궁제빵소 </dd>
+                <dd>경기도 인천</dd>
+                <dd>매일 09:00 &#126; 22:00</dd>
+                <dd>전통 한옥의 건물로 어른들이 좋아할 만한 분위기를 가지고 있다. 인기메뉴로는 빵도르, 거북이멜론빵이 있다.</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="keybox1">
+            <div class="k_page1">
+              <img src="./images/key2.png" alt="">
+              <dl>
+                <dt>&#35;반려동물과 &#35;테라스</dt>
+                <dd class="k01">스태픽스</dd>
+                <dd>서울 종로구</dd>
+                <dd>매일 10:00 &#126; 21:00</dd>
+                <dd>실내와 실외가 같이 운영되고 있는 공간이며 야외는 잔디가 깔려있어 반려동물과 함께 방문하면 좋을 곳이다.</dd>
+              </dl>
+            </div>
+            <div class="k_page1">
+              <img src="./images/key4.png" alt="">
+              <dl>
+                <dt>&#35;가족과 &#35;단체 &#35;브런치</dt>
+                <dd class="k01">몬떼델피노</dd>
+                <dd>경기도 김포</dd> 
+                <dd> 매일 10:00 &#126; 22:00</dd>
+                <dd>넓은 공간을 자랑하는 몬떼델피노는 가족들이나 단체 방문하기 좋은 공간이다.</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="keybox1">
+            <div class="k_page1">
+              <img src="./images/key5.png" alt="">
+              <dl>
+                <dt>&#35;take out &#35;동네맛집</dt>
+                <dd class="k01">나폴레옹</dd>
+                <dd>서울 성북구</dd>
+                <dd>매일 09:00 &#126; 21:00</dd>
+                <dd>아무거나 집어도 맛있지만, 너무 늦으면 빵이 많이 없음을 유의하도록 한다.</dd>
+              </dl>
+            </div>
+            <div class="k_page1">
+              <img src="./images/key6.png" alt="">
+              <dl>
+                <dt>&#35;take out&#35;샌드위치&#35;식사대용</dt>
+                <dd class="k01">커피원</dd>
+                <dd>서울 종로구</dd> 
+                <dd>평일 07:30 &#126; 17:00</dd>
+                <dd>아침 일찍부터 영업하기 때문에 직장인들에게 인기가 좋다. 또한 푸짐한 내용들 덕분에 식사대용으로 적당하다. 주로 샌드위치, 크림빵, 푸딩 종류가 인기가 많다.</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="keybox1">
+            <div class="k_page1">
+              <img src="./images/key7.png" alt="">
+              <dl>
+                <dt>&#35;테라스 &#35;공부하기 좋은 &#35;브런치 &#35;다양한 커피</dt>
+                <dd class="k01">리플로우</dd>
+                <dd>경기 고양시</dd>
+                <dd>매일 10:00 &#126; 21:00</dd>
+                <dd>단독 건물로 총 3층으로 이루어져있다. 테라스도 이용할 수 있으며 다양한 커피를 시음할 수 있어 커피를 좋아하는 사람에게 추천한다.</dd>
+              </dl>
+            </div>
+            <div class="k_page1">
+              <img src="./images/key8.png" alt="">
+              <dl>
+                <dt>&#35;take out &#35;건강한 재료 &#35;동네맛집</dt>
+                <dd class="k01">건강한 빵</dd>
+                <dd>서울 종로구</dd> 
+                <dd> 매일 10:00 &#126; 22:00</dd>
+                <dd>조용한 골목 빵집으로 앙버터 스콘 시리즈가 인기메뉴이며 그 외 다양한 재료를 활용한 식빵도 유명하다.</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+
+<!-- 베스트 리뷰어-->
+<div class="best_wrap">
+  <div class="best">
+    <h2>베스트 리뷰어 <span>베스트 빵돌이 빵순이 빵가워!</span></h2>
+    <div>
+      
+      <div>
+        <div class="b_box">
+          <h3>성심당은 내 고향이다영</h3>
+          <img src="./images/best01.png" alt="">
+          <div>
+            <span>집의 기록상점</span>
+            <span><i class="bread"></i>&#43;88</span>
+            <p>타르트=집의 기록상점, 공식입니다. 그냥 기억하세요.
+              타르트의 세계로 안내해준 가게 타르트의 특징인 겉바속촉을 제대로 느끼면서,, 옥수수의 진한 향이 나오다니,, 둘이 가서 한 명 옆에서 쓰러져도 아랑곳하지 않을 맛,, 내부에는 아기자기한 소품들이 많아요! 근데 유일한 단점은 좁아서 먹고가기 힘들어요ㅠㅠ</p>
+          </div>
+        </div>
+        <div class="b_box">
+          <h3 class="madal">대형카페는 사랑이지연</h3>
+          <img src="./images/best02.png" alt="">
+          <div>
+            <span>에플린크</span>
+            <span><i class="bread"></i>&#43;77</span>
+            <p>보는 재미와 먹는 재미 두마리 토끼를 잡을 수 있는 곳!
+              보이는 예쁨만큼 맛도 예쁘다니, 금상첨화란 말이 여기서 시작됐나요? 유명해지지말아라......없어지지 말아라...</p>
+          </div>
+        </div>
+        <div class="b_box">
+          <h3 class="madal2">빵을 사랑해연</h3>
+          <img src="./images/best03.png" alt="">
+          <div>
+            <span>광장시장 <br> 찹쌀꽈배기</span>
+            <span><i class="bread"></i>&#43;63</span>
+            <p>종로구에 왔는데 여길 안간다? 붕어빵에 단팥빠진 소리입니다. 줄이 길긴하지만 빠지는 속도가 비교적 빠른 편이라서, 진짜 꼭 먹어보세요. 찹살꽈배기도 맛있지만 찹쌀도너츠도 너무 맛있었어요..</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  </div> 
+<div>
+  <a href="#" title="위로가기" id="top_btn">Top</a>
+  <img src="./images/banner01.png" alt="" id="banner">
+</div>
+
+<script>
+  //top버튼 클릭시 새로고침 방지
+  $('#top_btn').click(function(){
+  //html, body 태그가 있는 곳까지 스크롤 0값이 되는 지점으로 애니메이션효과를 주면서 올라가라 0.3초만에
+  $('html,body').animate({scrollTop:'0px'},300);
+  return false;//새로고침 방지
+});
+
+
+$(window).scroll(function(){
+  let top = $(this).scrollTop();
+  console.log(top);
+
+  if(top>=1200){
+    $('#top_btn').fadeIn();
+  }else{
+    $('#top_btn').fadeOut();
+  }
+});
+
+
+
+
+img_num = Math.floor(Math.random()*3+1);
+document.getElementById('banner').src="./images/banner0"+img_num+".png";
+
+</script>
+
+
+</main>
+
+
+
+<!-- 푸터영역 -->
+<footer>
+  <p class="logo">
+    <a href="index.html"><img src="./images/footer_logo.png" alt="푸터로고"></a>
+  </p>
+  <div class="footer_b">
+    <nav class="f_nav">
+      <ul>
+        <li><a href="#" title="개인정보처리방침">개인정보처리방침</a> &#x007C;</li>
+        <li><a href="#" title="이메일주소무단수집거부">이메일주소무단수집거부</a> &#x007C;</li>
+        <li><a href="#" title="고객센터">고객센터</a></li>
+      </ul>
+      <!-- <img src="./images/footer_bg.png" alt=""> -->
+    </nav>
+    <ul class="sns">
+      <li>
+        <a href="#" title="kakao">
+          <img src="./images/sns_kakao.png" alt="카카오">
+        </a>
+      </li>
+      <li>
+        <a href="#" title="naver">
+          <img src="./images/sns_naver.png" alt="네이버">
+        </a>
+      </li>
+      <li>
+        <a href="#" title="google">
+          <img src="./images/sns_google.png" alt="구글">
+        </a>
+      </li>
+    </ul>
+    <address>(주) 빵지순례 서울특별시 종로구 관수동 수표로 96 2F 204호 &#x007C; 공동대표: 송지연 이다영 임혜연 &#x007C; 사업자 등록번호: 000-00-000000 <br>&copy;  2023 breadwelcome. All rights reserved.
+    </address>
+</div>
+</footer>
+<script>
+  let swiper = new Swiper(".keySlide", {
+  spaceBetween: 0,
+  slidesPerView: 2,
+  watchSlidesProgress: true,
+  touchRatio: 1,
+  loop: false,
+  pagination: {
+  el:  ".swiper-pagination",
+  type: 'bullets',
+  clickable: true,
+  },
+  observer: true,
+  observeParents: true,
+  parallax: true,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  });
+</script>  
+</body>
+
+</html>

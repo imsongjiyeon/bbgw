@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBang</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/pmain.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="index.html">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+        $("#userimail, #userpw").click(function() {
+    toggleClass(".active-color");
+});
+    </script>
+</head>
+<body>
+    <div id="wrap">
+        <div class="login_pc">
+            <header>
+                <h1 class="logo">
+                    <a href="index.html">BBang logo</a>
+                </h1>        
+            </header>
+            <main>
+                <form action="#">
+                    <p class="field">
+                        <label for="userid" class="hidden">user email</label>
+                        <i class="fa-solid fa-bread-slice"></i>
+                        <input type="text" id="userid" placeholder="아이디를 입력하세요." name="id">
+                    </p>
+                    <p class="field">
+                        <label for="userpw" class="hidden">user password</label>
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="userpw" placeholder="비밀번호를 입력하세요.">
+                    </p>
+                    <div class="cb">
+                        <input type="checkbox" id="idcb">
+                        <label for="idcb">아이디 저장</label>
+                        <input type="checkbox" id="autoid">
+                        <label for="autoid">자동 로그인</label>
+                        
+                        <a href="#"><span>회원가입</span></a>
+                    </div>
+                    
+                    <button>로그인</button>
+                </form>
+                <p class="id_search">
+                    <a href="#"><strong>아이디</strong>와 <strong>비밀번호</strong>가 기억나지 않으세요?</a>
+                </p>
+                <div class="sns">
+                    <strong>SNS 로그인</strong>
+                    <ul class="sns_icon">
+                        <li class="kakao"><a href="kakaowww.kakaocorp.com">
+                            <img src="./images/kakao.png" alt="kakao">
+                        </a></li>
+                        <li class="naver"><a href="kakaowww.kakaocorp.com">
+                            <img src="./images/naver.png" alt="naver">
+                        </a></li>
+                        <li class="google"><a href="kakaowww.kakaocorp.com">
+                            <img src="./images/google.png" alt="google">
+                        </a></li>
+                    </ul>
+                </div>
+            </main>
+            <footer>
+                <p>
+                    <img src="./images/random01.png" alt="" id="ranbanner">
+                </p>
+                <p>BBangGaWa&copy;All Rights Reserved.</p>
+            </footer>
+        </div>
+    </div>
+    <script>
+        img_num = Math.floor(Math.random()*3+1);
+        document.getElementById('ranbanner').src="./images/random0"+img_num+".png";
+    </script>
+</body>
+</html>

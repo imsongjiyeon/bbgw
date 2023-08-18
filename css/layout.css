@@ -1,0 +1,107 @@
+@charset "utf-8";
+
+
+  *{margin: 0;padding: 0;}
+  ul,ol,li{list-style: none;}
+  a{text-decoration: none;color: #333;}
+
+  header{
+  width: 100%;
+  height: 150px;
+  position: absolute;/*메인이 올라가서 겹침*/
+  top: 0;left: 0;
+}
+main{
+
+}
+#con01{
+  /* 150px 이상줘야함, 헤더가 앱솔루트로 붕 떠있기 때문 */
+  padding-top: 180px;
+  transition: 0.5s;
+  height: 450px;
+}
+#search_box, #m_slide{
+  width: 1200px;
+  margin: 0 auto;
+}
+#search_box{
+  height: 80px;
+  font-family: 'SANJUGotgam', sans-serif, arial;
+  font-weight: lighter;
+  font-style: normal;
+  display: flex;
+}
+.keyword, .local{
+  color: #ccc;
+  width: 50%; height: 45px;
+  background: #fff;
+  margin: 0 10px;
+  border-radius: 30px;
+  text-align: center;
+  line-height: 45px;
+}
+i.fa-location-dot, i.fa-magnifying-glass{
+  color: #104591;
+  margin-left: 20px;
+  margin-top: 11px;
+  font-size: 20px;
+}
+#m_slide{
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+}
+.txt_box{
+  width: 50%;
+}
+.txt_box_inner{
+  width: 330px;
+  transform: translateX(30%) translateY(60px);
+  overflow: hidden;
+  font-family: 'NanumSquareRound';
+  font-weight: normal;
+  font-style: normal;
+}
+.txt_box_inner ul{
+  padding: 0 20px;
+  line-height: 20px;
+}
+.txt_box_inner span{
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 60px;
+}
+.txt_box ul{
+  width: 950px;
+  display: flex;
+}
+.txt_box ul li{
+  width: 330px;height: 300px;
+}
+.img_box{
+  width: 50%; height: 440px;
+  overflow: hidden;
+}
+.img_box ul{
+  display: flex;
+  width: 1800px;
+}
+.img_box ul li{
+  width: 600px;
+}
+#m_slide i.fas{
+font-size: 30px;
+position: absolute;
+right: -30px;
+top: 48%;
+}
+/* 배경색 적용하기 */
+.bgcolor01{
+  background: #F9E0B8;
+}
+.bgcolor02{
+  background:#FADFE1;
+}
+.bgcolor03{
+  background: #C0E4FF;
+}

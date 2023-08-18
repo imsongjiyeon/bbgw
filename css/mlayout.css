@@ -1,0 +1,253 @@
+@charset "utf-8";
+/* 공통서식 */
+header{
+  position: fixed; /* 기준 */
+  top: 0px; left: 0px;
+  height: 80px;
+  width: 100%;
+  z-index: 10;
+  background: #fff;
+  box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+header > h1{
+  text-align: center;
+}
+header > h1 img{
+  height: 67px; padding: 6px 0px;
+}
+.fa-bars{
+  position: absolute;
+  top: 50%; left: 15px;
+  transform: translateY(-50%);
+  font-size: 40px;
+  color: #104591;
+  cursor: pointer;
+}
+.fa-location-dot{
+  position: absolute;
+  top: 50%; right: 15px;
+  transform: translateY(-50%);
+  font-size: 40px;
+  color: #104591;
+}
+.navi{
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%; 
+  height: 100%;
+  position: fixed;
+  left: -100%;
+  top: 0px;
+  box-sizing: border-box;
+  transition: 0.5s;
+  font-size: 1rem;
+  /* overflow-y: scroll; 서브메뉴를 다 펼쳤을때 스크롤 생기도록! */
+  background: #104591;
+}
+.navi h2{
+  position: absolute;
+  top: 10%; padding-left: 25px;
+  transform: translateY(-50%);
+}
+.navi a img{
+  height: 67px;
+}
+.navi .lnb{
+  position: absolute;
+  top: 9%; padding-left: 118px;
+}
+.lnb a{
+  color: #fff;
+  display: inline-block;
+  margin-right: 40px;
+}
+.lnb > a::after{
+  display: inline-block;
+  content: "";
+  width: 2px; height: 20px;
+  background: #fff;
+  position: absolute;
+  top: -2px;
+  margin: 0px 20px;
+}
+.lnb > a:last-child::after{
+  display: none;
+}
+
+#toggle:checked + header .navi{
+  left: 0px;
+
+}
+label.fa-times{
+  color: #fff;
+  font-size: 1.8rem;
+  position: absolute;
+  right: 5%; top: 7%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.gnb_wrap{
+  position: absolute; width: 100%;
+  top: 153px;
+  /* padding-top: 153px; */
+  overflow-y: scroll; /*서브메뉴를 다 펼쳤을때 스크롤 생기도록!*/
+  height: 550px;
+}
+
+.gnb{
+  /* height: 530px; */
+  /* padding-top: 153px; */
+}
+.gnb a{
+  color: #fff;
+}
+
+.gnb > li{
+  text-indent: 30px;
+  /* border-bottom: 1px solid #fff; */
+  clear: right;
+  position: relative;
+}
+
+.gnb > li > a{
+  font-size: 1.5rem;
+  line-height: 49px;
+  display: block;
+}
+
+.gnb > li > a i.fas{
+  position: absolute;
+  right: 30px;
+  font-size: 1.2rem;
+  padding: 14.9px 12px;
+}
+
+.sub{
+  width: 100%;
+  background: #0A3067;
+  display: none;
+}
+.sub li{
+  text-indent: 50px;
+}
+.sub a{
+  line-height: 39px;
+  font-size: 1rem;
+}
+
+.logout{
+  position: absolute;
+  /* border: 1px solid #fff; */
+  bottom: 66px;
+  color: #fff;
+  width: 100%;
+  padding: 30px 30px;
+}
+
+
+.navi .lang{
+  width: 100%;
+  position: absolute;
+  bottom: 0px; left: 0px;
+  display: flex;
+  box-shadow: 0px -3px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.lang li{
+  width: 50%;
+  text-align: center;
+  padding: 20px 0px;
+}
+.lang li:first-child{
+  background: #F3E6D6;
+}
+.lang li a{
+  color: #fff;
+}
+.lang > li:first-child > a{
+  color: #333;
+}
+.on{
+  transform: rotate(-180deg) translateX(-30px);
+}
+
+
+
+/* 푸터영역 서식 */
+footer{
+  background: #58606A;
+  padding-top: 30px;
+  text-align: center;
+}
+footer > h2{
+  padding: 10px 0px;
+}
+footer > h2 img{
+  max-width: 233px;
+}
+
+.f_inner{
+  background: url(../mimages/footer_bg.png);
+  background-repeat: no-repeat; 
+  padding: 0px 15px;
+  height: 320px;
+  background-size: 100% 100%;
+}
+
+/* pc버튼 서식 */
+/* .pc_btn{
+  border: 1px solid #fff;
+  padding: 4px 10px;
+} */
+
+address{
+  font-size: 0.75rem; /* 1rem 16px , 0.75rem 12px*/
+  padding-top: 15px;
+  font-style:normal;
+  line-height: 25px;
+  color: #fff;
+  padding-top: 90px;
+}
+
+.f_inner > address > ul{
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+  font-size: 0.875rem;
+  padding-bottom: 10px;
+}
+
+.f_inner > address p{
+  text-align: left;
+  margin: 0px 15px;
+}
+address > ul > li {
+  margin: 0px 10px;
+}
+address > ul > li > a{
+  color: #fff;
+} 
+
+.sns{
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding-top: 15px;
+}
+
+.sns > li  img{
+  width: 30px;
+}
+
+#top_btn{
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  background: #0A3067;
+  color: #fff;
+  padding: 20px 10px;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-family: 'SANJUGotgam';
+  box-shadow: 0px 0px 3px 0px rgba(255, 255, 255, 0.25);
+}
